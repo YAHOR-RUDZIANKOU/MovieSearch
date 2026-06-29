@@ -1,0 +1,43 @@
+.header__wrapper {
+  min-height: 80px;
+  width: 100%;
+  background-color: black;
+  padding: 0 100px 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo h1 {
+  line-height: 1;
+}
+
+.header__logoIcon {
+  height: 32px;
+  width: 32px;
+  transform: translateY(2px);
+}
+
+.btn__icon {
+  fill: #e50914;
+}
+
+.header__input {
+  width: 350px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+
+.header__btn {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
