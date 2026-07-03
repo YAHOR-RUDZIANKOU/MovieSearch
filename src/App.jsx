@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import Header from "./components/header/Header";
-import "./main.css";
 import MovieList from "./components/MovieList/MovieList";
 import { getTopMovies } from "./api/kinopoisk";
+import Loader from "./components/Loader/Loader";
 function App() {
   const [movies, setMovies] = useState([]);
+  const [isFilmsLoading, setIsFilmsLoading] = useState(false);
 
   async function fetchMovies() {
+    setIsFilmsLoading(true);
     const allMovies = await getTopMovies();
     setMovies(allMovies);
+    setIsFilmsLoading(false);
   }
 
   useEffect(() => {
@@ -18,7 +21,7 @@ function App() {
   return (
     <div>
       <Header />
-      <MovieList moviesData={movies} />
+      {isFilmsLoading ? <Loader /> : <MovieList moviesData={movies} />}
     </div>
   );
 }
