@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-export function useFetch(requestFunc) {
+export function useFetch(requestFunc,query) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -9,7 +9,7 @@ export function useFetch(requestFunc) {
       try {
         setError(null);
         setIsLoading(true);
-        const allData = await requestFunc();
+        const allData = await requestFunc(query);
         setData(allData);
       } catch (e) {
         setError(e.message);
@@ -18,7 +18,7 @@ export function useFetch(requestFunc) {
       }
     }
     fetchData();
-  }, [requestFunc]);
+  }, [requestFunc,query]);
 
   return { data, isLoading, error };
 }
