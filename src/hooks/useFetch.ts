@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
-export function useFetch(requestFunc,query) {
-  const [data, setData] = useState([]);
+export function useFetch(
+  requestFunc: (query: string) => Promise<object[]>,
+  query: string,
+) {
+  const [data, setData] = useState<object[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -12,13 +15,17 @@ export function useFetch(requestFunc,query) {
         const allData = await requestFunc(query);
         setData(allData);
       } catch (e) {
-        setError(e.message);
+        if (e instanceof Error) {
+          setError(e.message);
+        } else {
+          setError("Произошла неизвестная ошибка");
+        }
       } finally {
         setIsLoading(false);
       }
     }
     fetchData();
-  }, [requestFunc,query]);
+  }, [requestFunc, query]);
 
   return { data, isLoading, error };
 }
