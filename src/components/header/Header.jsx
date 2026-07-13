@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { MdMovie, MdFavoriteBorder } from "react-icons/md";
 import classes from "./header.module.css";
 import MyButton from "../UI/Button/MyButton";
-const Header = ({ value, onSearchChange }) => {
+const Header = ({ value, onSearchChange,favoriteFilms }) => {
   return (
     <div className={classes.header__wrapper}>
       <div className={classes.header__logo}>
@@ -19,7 +19,7 @@ const Header = ({ value, onSearchChange }) => {
       <MyButton className={classes.header__btn}>
         <MdFavoriteBorder className={classes.btn__icon} />
         <span className={classes.btn__text}> Избранное :</span>
-        <span className={classes.btn__count}>0</span>
+        <span className={classes.btn__count}>{favoriteFilms.length}</span>
       </MyButton>
     </div>
   );
