@@ -9,7 +9,7 @@ const MovieList = ({ moviesData, favoriteFilms, toggleFavorite }) => {
           <MovieCard
             favoriteFilms={favoriteFilms}
             toggleFavorite={toggleFavorite}
-            key={value.kinopoiskId}
+            key={value.kinopoiskId || value.id || value.nameRu}
             value={value}
           />
         ))}
