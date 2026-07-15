@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getMovieId } from "../utils/getMovieId";
 
 export type IMovie = {
@@ -12,8 +12,15 @@ export type IMovie = {
 };
 
 export function useFavorites() {
-  const [favoriteFilms, setFavoriteFilms] = useState<IMovie[]>([]);
-
+  const [favoriteFilms, setFavoriteFilms] = useState<IMovie[]>(()=>{
+    const oldFavorFilms=localStorage.getItem("favorites");
+    return oldFavorFilms? JSON.parse(oldFavorFilms) :[];
+  });
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favoriteFilms));
+    console.log(localStorage.getItem("favorites"));
+    console.log('--------------')
+  }, [favoriteFilms]);
   const toggleFavorite = (value: IMovie) => {
     let currentId = getMovieId(value);
     let hasId = favoriteFilms.some((item) => getMovieId(item) === currentId);
