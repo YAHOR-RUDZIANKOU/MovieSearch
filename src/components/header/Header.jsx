@@ -4,6 +4,7 @@ import classes from "./header.module.css";
 import MyButton from "../UI/Button/MyButton";
 import { useDebounce } from "/src/hooks/useDebounce";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = ({ favoriteFilms }) => {
   const [inputValue, setInputValue] = useState("");
@@ -11,9 +12,11 @@ const Header = ({ favoriteFilms }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if(inputValue.length){
     navigate(`/?search=${searchQuery}`);
+    }
   }, [searchQuery]);
-  
+
   return (
     <div className={classes.header__wrapper}>
       <div className={classes.header__logo}>
@@ -27,11 +30,13 @@ const Header = ({ favoriteFilms }) => {
         placeholder="Фильмы, сериалы"
         className={classes.header__input}
       />
-      <MyButton className={classes.header__btn}>
-        <MdFavoriteBorder className={classes.btn__icon} />
-        <span className={classes.btn__text}> Избранное :</span>
-        <span className={classes.btn__count}>{favoriteFilms.length}</span>
-      </MyButton>
+      <Link to="/favorites"  onClick={() => setInputValue('')}>
+        <MyButton  className={classes.header__btn}>
+          <MdFavoriteBorder className={classes.btn__icon} />
+          <span className={classes.btn__text}> Избранное :</span>
+          <span className={classes.btn__count}>{favoriteFilms.length}</span>
+        </MyButton>
+      </Link>
     </div>
   );
 };

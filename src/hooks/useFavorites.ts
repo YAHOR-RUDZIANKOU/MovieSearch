@@ -18,8 +18,6 @@ export function useFavorites() {
   });
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favoriteFilms));
-    // console.log(localStorage.getItem("favorites"));
-    // console.log('--------------')
   }, [favoriteFilms]);
   const toggleFavorite = (value: IMovie) => {
     let currentId = getMovieId(value);

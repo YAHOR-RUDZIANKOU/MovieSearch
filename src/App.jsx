@@ -11,7 +11,7 @@ function App() {
       <Header favoriteFilms={favoriteFilms} />
       <Routes>
         <Route path="/" element={<Home favoriteFilms={favoriteFilms} toggleFavorite={toggleFavorite} />} />
-        <Route path="/favorites" element={<Favorite />} />
+        <Route path="/favorites" element={<Favorite moviesData={favoriteFilms} favoriteFilms={favoriteFilms} toggleFavorite={toggleFavorite}/>} />
       </Routes>
     </div>
   );
