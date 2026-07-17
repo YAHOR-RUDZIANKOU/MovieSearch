@@ -1,20 +1,40 @@
-import MovieList from "/src/components/MovieList/MovieList";
 import classes from "./favorite.module.css";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { List } from "../components/List";
+import MovieCard from "../components/MovieCard/MovieCard";
 
-export const Favorite = ({ moviesData, favoriteFilms, toggleFavorite }) => {
+export const Favorite = ({ favoriteFilms, toggleFavorite }) => {
   return (
     <div>
-      {moviesData.length ? (
-        <MovieList
-          moviesData={moviesData}
-          favoriteFilms={favoriteFilms}
-          toggleFavorite={toggleFavorite}
-        />
-      ) : (
+      {favoriteFilms.length > 0 && (
+        <div className={classes.main}>
+          <div className={classes.cards__wrapper}>
+            <AnimatePresence mode="popLayout">
+              {" "}
+              {/* Не используем компонент List чтобы работал AnimatePresence */}
+              {favoriteFilms.map((value) => (
+                <motion.div
+                  key={value.kinopoiskId || value.id || value.nameRu}
+                  initial={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8, x: -100 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <MovieCard
+                    favoriteFilms={favoriteFilms}
+                    toggleFavorite={toggleFavorite}
+                    value={value}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
+      )}
+      {favoriteFilms.length === 0 && (
         <div className={classes.favorite__container}>
           <div className={classes.favorite__title}>
-            Избранные фильмы отсутствуют 
+            Избранные фильмы отсутствуют
           </div>
           <Link to="/" className={classes.favorite__subtitle}>
             Вернуться на главную страницу

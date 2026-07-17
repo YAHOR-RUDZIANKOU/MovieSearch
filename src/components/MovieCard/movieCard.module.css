@@ -7,9 +7,10 @@
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.09);
   padding-bottom: 10px;
+  min-height: 100%;
 }
 
-.card_active{
+.card_active {
   color: red;
 }
 
@@ -52,7 +53,7 @@
 
 .card__btn {
   margin-top: auto;
-  transition:  color 0.5s ease;
+  transition: color 0.5s ease;
 }
 
 .bad__ratingCard {

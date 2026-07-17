@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
-import MovieList from "../components/MovieList/MovieList";
 import Loader from "../components/Loader/Loader";
 import classes from "../components/Loader/Loader.module.css";
 import { getTopMovies, getSearchMovies, fetchMovies } from "../api/kinopoisk";
 import { useFetch } from "../hooks/useFetch";
+import { List } from "../components/List";
+import { motion, AnimatePresence } from "framer-motion";
+import MovieCard from "../components/MovieCard/MovieCard";
 
 export const Home = ({ favoriteFilms, toggleFavorite }) => {
   const [searchParams] = useSearchParams();
@@ -23,11 +25,21 @@ export const Home = ({ favoriteFilms, toggleFavorite }) => {
         <div className={classes.errors}>{error}</div>
       )}
       {!isFilmsLoading && !error && (
-        <MovieList
-          moviesData={movies}
-          favoriteFilms={favoriteFilms}
-          toggleFavorite={toggleFavorite}
-        />
+        <div className={classes.main}>
+          <div className={classes.cards__wrapper}>
+            <List
+              items={movies}
+              renderItems={(value) => (
+                <MovieCard
+                  favoriteFilms={favoriteFilms}
+                  toggleFavorite={toggleFavorite}
+                  value={value}
+                  key={value.kinopoiskId || value.id || value.nameRu}
+                />
+              )}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
