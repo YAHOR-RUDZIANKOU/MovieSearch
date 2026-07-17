@@ -9,7 +9,7 @@ export function useDebounce<T>(value:T, delay:number):T {
     } else {
       timer = setTimeout(() => {
         setDebouncedValue(value);
-        console.log("я тут");
+        // console.log("я тут");
       }, delay);
     }
     return () => clearTimeout(timer);

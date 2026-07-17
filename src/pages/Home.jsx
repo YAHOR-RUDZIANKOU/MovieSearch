@@ -4,7 +4,7 @@ import Loader from "../components/Loader/Loader";
 import classes from "../components/Loader/Loader.module.css";
 import { getTopMovies, getSearchMovies, fetchMovies } from "../api/kinopoisk";
 import { useFetch } from "../hooks/useFetch";
-import { List } from "../components/List";
+import { List } from "../components/List/List";
 import { motion, AnimatePresence } from "framer-motion";
 import MovieCard from "../components/MovieCard/MovieCard";
 

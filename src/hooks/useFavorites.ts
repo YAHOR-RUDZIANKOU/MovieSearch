@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react";
 import { getMovieId } from "../utils/getMovieId";
+import {IMovie} from "../types/movie"
 
-export type IMovie = {
-  kinopoiskId?: number;
-  filmId?: number;
-  posterUrlPreview: string;
-  nameRu: string;
-  ratingKinopoisk: number;
-  genres: { genre: string }[];
-  year: number;
-};
+
 
 export function useFavorites() {
   const [favoriteFilms, setFavoriteFilms] = useState<IMovie[]>(()=>{

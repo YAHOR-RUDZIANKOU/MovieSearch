@@ -1,7 +1,6 @@
 import classes from "./favorite.module.css";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { List } from "../components/List";
 import MovieCard from "../components/MovieCard/MovieCard";
 
 export const Favorite = ({ favoriteFilms, toggleFavorite }) => {
