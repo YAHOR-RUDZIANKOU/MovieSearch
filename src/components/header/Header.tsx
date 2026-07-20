@@ -5,9 +5,13 @@ import MyButton from "../UI/Button/MyButton";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { HeaderProps } from "../../types/movie";
+import { IMovie } from "../../types/movie";
 
-const Header = ({ favoriteFilms }:HeaderProps) => {
+type HeaderProps = {
+  favoriteFilms: IMovie[];
+};
+
+const Header = ({ favoriteFilms }: HeaderProps) => {
   const [inputValue, setInputValue] = useState("");
   const searchQuery = useDebounce(inputValue, 3000);
   const navigate = useNavigate();

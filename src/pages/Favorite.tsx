@@ -2,8 +2,14 @@ import classes from "./favorite.module.css";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import MovieCard from "../components/MovieCard/MovieCard";
+import { IMovie } from "../types/movie";
 
-export const Favorite = ({ favoriteFilms, toggleFavorite }) => {
+type FavoriteProps = {
+  favoriteFilms: IMovie[];
+  toggleFavorite: (item: IMovie) => void;
+};
+
+export const Favorite = ({ favoriteFilms, toggleFavorite }: FavoriteProps) => {
   return (
     <div>
       {favoriteFilms.length > 0 && (
@@ -14,7 +20,7 @@ export const Favorite = ({ favoriteFilms, toggleFavorite }) => {
               {/* Не используем компонент List чтобы работал AnimatePresence */}
               {favoriteFilms.map((value) => (
                 <motion.div
-                  key={value.kinopoiskId || value.id || value.nameRu}
+                  key={value.kinopoiskId || value.filmId || value.nameRu}
                   initial={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8, x: -100 }}
                   transition={{ duration: 0.3 }}

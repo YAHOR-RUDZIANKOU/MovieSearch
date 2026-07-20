@@ -12,6 +12,10 @@ export type IMovie = {
   year: number;
 };
 
-export type HeaderProps = {
-  favoriteFilms: IMovie[];
+export type KinopoiskResponseItems = {
+  items: IMovie[];
+};
+
+export type KinopoiskResponseFilms = {
+  films: IMovie[];
 };

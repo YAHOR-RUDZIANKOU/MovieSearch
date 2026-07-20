@@ -1,14 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
 import classes from "../components/Loader/Loader.module.css";
-import { getTopMovies, getSearchMovies, fetchMovies } from "../api/kinopoisk";
+import { fetchMovies } from "../api/kinopoisk";
 import { useFetch } from "../hooks/useFetch";
 import { List } from "../components/List/List";
-import { motion, AnimatePresence } from "framer-motion";
 import MovieCard from "../components/MovieCard/MovieCard";
+import { IMovie } from "../types/movie";
 
-export const Home = ({ favoriteFilms, toggleFavorite }) => {
+type HomeProps = {
+  favoriteFilms: IMovie[];
+  toggleFavorite: (item: IMovie) => void;
+};
+
+export const Home = ({ favoriteFilms, toggleFavorite }: HomeProps) => {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
 
@@ -29,12 +33,12 @@ export const Home = ({ favoriteFilms, toggleFavorite }) => {
           <div className={classes.cards__wrapper}>
             <List
               items={movies}
-              renderItems={(value) => (
+              renderItems={(value:IMovie) => (
                 <MovieCard
                   favoriteFilms={favoriteFilms}
                   toggleFavorite={toggleFavorite}
                   value={value}
-                  key={value.kinopoiskId || value.id || value.nameRu}
+                  key={value.kinopoiskId || value.filmId || value.nameRu}
                 />
               )}
             />

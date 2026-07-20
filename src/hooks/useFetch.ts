@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { IMovie } from "../types/movie";
 export function useFetch(
-  requestFunc: (query: string) => Promise<object[]>,
+  requestFunc: (query: string) => Promise<IMovie[]>,
   query: string,
 ) {
-  const [data, setData] = useState<object[]>([]);
+  const [data, setData] = useState<IMovie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

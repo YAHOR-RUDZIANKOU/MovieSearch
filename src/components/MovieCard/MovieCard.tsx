@@ -1,7 +1,8 @@
 import classes from "./movieCard.module.css";
-import { useState, useEffect } from "react";
-import { getMovieId } from "/src/utils/getMovieId";
-function showColorRating(value) {
+import { getMovieId } from "../../utils/getMovieId";
+import { IMovie } from "../../types/movie";
+
+function showColorRating(value: number) {
   const currentNumb = Number(value);
   if (currentNumb < 5 && currentNumb > 0) {
     return classes.bad__ratingCard;
@@ -13,7 +14,17 @@ function showColorRating(value) {
   return classes.no__ratingCard;
 }
 
-const MovieCard = ({ value, favoriteFilms, toggleFavorite }) => {
+type MovieCardProps = {
+  favoriteFilms: IMovie[];
+  value: IMovie;
+  toggleFavorite: (item: IMovie) => void;
+};
+
+const MovieCard = ({
+  value,
+  favoriteFilms,
+  toggleFavorite,
+}: MovieCardProps) => {
   let currentId = getMovieId(value);
   let hasId = favoriteFilms.some((item) => getMovieId(item) === currentId);
   const buttonClass = `${classes.card__btn} ${hasId ? classes.card_active : ""}`;
@@ -27,7 +38,7 @@ const MovieCard = ({ value, favoriteFilms, toggleFavorite }) => {
       <div className={classes.card__img}>
         <img
           src={value.posterUrlPreview}
-          alt={value.nameRU}
+          alt={value.nameRu}
           className={classes.card__poster}
         />
         <div
