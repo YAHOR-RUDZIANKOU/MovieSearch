@@ -36,11 +36,17 @@ const MovieCard = ({
   return (
     <div key={value.kinopoiskId} className={classes.card__item}>
       <div className={classes.card__img}>
-        <img
-          src={value.posterUrlPreview}
-          alt={value.nameRu}
-          className={classes.card__poster}
-        />
+        <a
+          href={`https://kinopoisk.ru/film/${value.kinopoiskId}//`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src={value.posterUrlPreview}
+            alt={value.nameRu}
+            className={classes.card__poster}
+          />
+        </a>
         <div
           className={`${classes.card__rating}  ${showColorRating(value.ratingKinopoisk)}`}
         >

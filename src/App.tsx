@@ -5,7 +5,7 @@ import { Favorite } from "./pages/Favorite";
 import { useFavorites } from "./hooks/useFavorites";
 import { AuthProvider } from "./context/AuthContext";
 import { useState } from "react";
-import Footer from "./components/Footer/Footer";
+import Footer from "./components/Footer/Footer"
 import classes from "./App.module.css";
 
 function App() {
