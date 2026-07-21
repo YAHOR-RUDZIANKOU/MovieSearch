@@ -23,7 +23,7 @@ export const Home = ({ favoriteFilms, toggleFavorite }: HomeProps) => {
   } = useFetch(fetchMovies, searchQuery);
 
   return (
-    <div>
+    <div className={classes.main__wrapper}>
       {isFilmsLoading && <Loader />}
       {!isFilmsLoading && error && (
         <div className={classes.errors}>{error}</div>
