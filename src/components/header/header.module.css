@@ -1,4 +1,5 @@
 .header__wrapper {
+  box-sizing: border-box;
   min-height: 80px;
   width: 100%;
   background-color: black;
@@ -44,16 +45,21 @@
 
 @media (max-width: 1060px) {
   .header__wrapper {
+    display: flex;
     flex-direction: column;
-    padding: 25px 0px;
+    align-items: center;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 25px 5px 25px 5px;
     gap: 5px;
+  }
+  .header__input {
+    width: 100%;
+    max-width: 250px;
   }
 }
 
-@media (max-width: 400px) {
-  .header__input {
-    width: 200px;
-  }
+@media (max-width: 450px) {
 
   .header__btn {
     font-size: 20px;

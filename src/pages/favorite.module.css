@@ -28,3 +28,16 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 24px;
 }
+
+@media (max-width: 500px) {
+  .main {
+    padding: 30px 15px 30px 15px;
+  }
+  .favorite__title {
+    font-size: 16px;
+  }
+
+  .favorite__subtitle {
+    font-size: 16px;
+  }
+}

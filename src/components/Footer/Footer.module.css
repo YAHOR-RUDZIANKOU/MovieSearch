@@ -33,7 +33,7 @@
 @media (max-width: 735px) {
   .footer__title {
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 5px 20px 5px;
     margin: 0 50px;
   }
 }

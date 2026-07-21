@@ -1,5 +1,5 @@
 .loader {
-  margin:  0 auto;
+  margin: 0 auto;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -16,7 +16,7 @@
   }
 }
 
-.errors{
+.errors {
   margin-top: 20px;
   color: black;
   font-size: 30px;
@@ -34,4 +34,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 24px;
+}
+
+@media (max-width: 500px) {
+  .main {
+    padding: 30px 15px 30px 15px;
+  }
 }
