@@ -41,3 +41,21 @@
   align-items: center;
   gap: 5px;
 }
+
+@media (max-width: 1060px) {
+  .header__wrapper {
+    flex-direction: column;
+    padding: 25px 0px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header__input {
+    width: 200px;
+  }
+
+  .header__btn {
+    font-size: 20px;
+  }
+}

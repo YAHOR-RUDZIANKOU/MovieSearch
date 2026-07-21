@@ -29,3 +29,17 @@
   color: #007bff;
   transform: scale(1.5);
 }
+
+@media (max-width: 735px) {
+  .footer__title {
+    text-align: center;
+    padding: 20px 0;
+    margin: 0 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer__title {
+    font-size: 10px;
+  }
+}
