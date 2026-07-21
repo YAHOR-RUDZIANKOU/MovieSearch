@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdMovie, MdFavoriteBorder } from "react-icons/md";
 import classes from "./header.module.css";
 import MyButton from "../UI/Button/MyButton";
@@ -6,12 +6,17 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { IMovie } from "../../types/movie";
+import { AuthProvider } from "../../context/AuthContext";
+import MyModal from "../MyModal/MyModal";
+import AuthForm from "../AuthForm/AuthForm";
 
 type HeaderProps = {
   favoriteFilms: IMovie[];
 };
 
 const Header = ({ favoriteFilms }: HeaderProps) => {
+  const { isAuth } = useContext(AuthProvider);
+  const [visible, setVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const searchQuery = useDebounce(inputValue, 3000);
   const navigate = useNavigate();
@@ -35,13 +40,26 @@ const Header = ({ favoriteFilms }: HeaderProps) => {
         placeholder="Фильмы, сериалы"
         className={classes.header__input}
       />
-      <Link to="/favorites" onClick={() => setInputValue("")}>
+      <Link
+        to="/favorites"
+        onClick={(e) => {
+          if (isAuth) {
+            setInputValue("");
+          } else {
+            e.preventDefault();
+            setVisible(true);
+          }
+        }}
+      >
         <MyButton className={classes.header__btn}>
           <MdFavoriteBorder className={classes.btn__icon} />
           <span className={classes.btn__text}> Избранное :</span>
           <span className={classes.btn__count}>{favoriteFilms.length}</span>
         </MyButton>
       </Link>
+      <MyModal visible={visible}>
+        <AuthForm setVisible={setVisible} setInputValue={setInputValue} />
+      </MyModal>
     </div>
   );
 };
